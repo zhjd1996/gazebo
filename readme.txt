@@ -1,2 +1,2 @@
-move the folders to  your ROS workspace/src
+move three folders to  your ROS workspace/src
 catkin/make
