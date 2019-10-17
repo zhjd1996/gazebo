@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+    <!-- script_version=1.1 -->
+<!-- 下面的文件做什么的？？ -->
+    <robot name="sensor_rplidar" xmlns:xacro="http://ros.org/wiki/xacro">
+<!-- 下行的文件做什么的？？ -->
+      <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_gazebo_rplidar.urdf.xacro"/>
+      <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_properties.urdf.xacro"/>
+
+      <!-- RPLidar 2D LIDAR -->
+      <xacro:macro name="sensor_rplidar" params="parent">
+		<!-- joint：关节的设定 （转换关系） -->
+		<!-- 这是不是就相当于 tf转换？ -->
+		<joint name="laser" type="fixed">
+		  <origin xyz="0 0 0.42" rpy="0 0.0 180" />
+		  <parent link="base_link" />
+		  <child link="laser_link" />
+		</joint>
+		<!--  定义自身的frameid，parent_frameid在kobuki_hexagons_KinectHokuyo.urdf.xacro中定义了，是base_link -->
+	       <link name="laser_link">
+		       <visual>
+				 <geometry>
+					<!-- 画个圆柱体代替模型-->
+					<cylinder length="0.04"  radius="0.04"/>        
+				<!--<mesh filename="package://turtlebot_description/meshes/sensors/hokuyo.dae"/>-->
+				 </geometry>
+		       </visual>
+
+		       <inertial>
+				   <mass value="1e-5" />
+				 <origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		       </inertial>
+	       </link>
+
+        <!-- Set up laser gazebo details -->
+	<!--这里调入宏turtlebot_sim_2dsensor是什么用途？？确定rplidar的细节-->
+        <turtlebot_sim_2dsensor/>
+      </xacro:macro>
+</robot>
+
+
+
+
+
+
+
+
+
+
+
+
+
+***********************************************************************************************
+
+
+
+<?xml version="1.0"?>
+    <!-- script_version=1.1 -->
+    <robot name="sensor_hokuyo" xmlns:xacro="http://ros.org/wiki/xacro">
+      <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_gazebo.urdf.xacro"/>
+      <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_properties.urdf.xacro"/>
+
+      <!-- RPLidar 2D LIDAR -->
+      <xacro:macro name="sensor_rplidar" params="parent">
+        <joint name="laser" type="fixed">
+          <origin xyz="0 0 0.42" rpy="0 0.0 0.0" />
+          <parent link="base_link" />
+            <child link="laser_link" />
+        </joint>
+
+        <!-- Hokuyo Laser -->
+       <link name="laser_link">
+         <collision>
+           <origin xyz="0 0 0" rpy="0 0 0"/>
+           <geometry>
+         <box size="0.1 0.1 0.1"/>
+           </geometry>
+         </collision>
+
+       <visual>
+           <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+		<cylinder length="0.04"  radius="0.04"/>        
+<!--<mesh filename="package://turtlebot_description/meshes/sensors/hokuyo.dae"/>-->
+         </geometry>
+       </visual>
+
+       <inertial>
+           <mass value="1e-5" />
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+       </link>
+
+        <!-- Set up laser gazebo details -->
+        <turtlebot_sim_2dsensor/>
+      </xacro:macro>
+</robot>
+
+
+
+
+
+
+
+

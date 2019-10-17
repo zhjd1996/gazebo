@@ -1,0 +1,18 @@
+<launch>
+<!--gazebo
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>-->
+
+  <!-- Gmapping -->
+  <arg name="custom_gmapping_launch_file" default="$(find turtlebot_navigation)/launch/includes/gmapping/rplidar_gmapping.launch.xml"/>
+  <include file="$(arg custom_gmapping_launch_file)" >
+  </include>
+
+  <!-- Move base -->
+  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
+    <!-- tf -->
+<node pkg="tf" type="static_transform_publisher" name="base_to_laser" args="0.0 0.0 0.0 0 0 180 base_link base_laser 100"/>
+<!-- rviz  -->
+<include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+
+
+</launch>
