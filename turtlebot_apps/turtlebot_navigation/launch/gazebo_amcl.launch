@@ -1,14 +1,11 @@
 <launch>
-  
-<!-- turtlebot_bringup -->
-<include file="$(find turtlebot_bringup)/launch/minimal.launch" />
+ <!--gazebo-->
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
 
 
-  <!-- laser driver -->
-  <include file="$(find rplidar_ros)/launch/rplidar.launch" />
- 
+
   <!-- Map server -->
-  <arg name="map_file" default="/home/zhjd/map/rplidar_gmapping.yaml"/>
+  <arg name="map_file" default="$(find turtlebot_navigation)/maps/gazebo16.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
 
@@ -36,5 +33,6 @@
 <!-- tf-->
 <node pkg="tf" type="static_transform_publisher" name="base_to_laser" args="0.0 0.0 0.18 0 0 180 0 base_link laser 100"/>
  
+
 </launch>
 
