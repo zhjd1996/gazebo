@@ -14,3 +14,8 @@
 	turtlebot-kinetic内包含turtlebot_bringup（启动机器人）、turtlebot_description（仿真所需的3D模型）、turtlebot_teleop（遥控机器人）等
 	
 	具体内容可以去ros wiki上查看。
+三、部分指令
+1、启动gazebo仿真
+roslaunch turtlebot_gazebo turtlebot_world.launch
+2、建图
+roslaunch turtlebot_navigation gazebo_gmapping.launch

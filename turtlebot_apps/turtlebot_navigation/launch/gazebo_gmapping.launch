@@ -1,6 +1,6 @@
 <launch>
-<!--gazebo-->
-  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
+<!--gazebo
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>-->
 
   <!-- Gmapping -->
   <arg name="custom_gmapping_launch_file" default="$(find turtlebot_navigation)/launch/includes/gmapping/rplidar_gmapping.launch.xml"/>
